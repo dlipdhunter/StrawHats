@@ -1,0 +1,23 @@
+<span *ngIf="!strawhatsService.strawHats">Loading...</span>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor='let strawhat of strawhatsService.strawHats'>
+        <div>
+            <header>
+                <span class="title">{{strawhat.name}}</span>
+                <span class="sub-title">{{strawhat.nickName}}</span>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-primary btn-sm" title="Edit" [routerLink]="['/edit-strawhat']"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a class="btn btn-danger btn-sm" title="Delete" [routerLink]="['/delete-strawhat']"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
+                
+            </header>
+            <section class="content">
+                <span>{{strawhat.position}} of the {{strawhat.crewName}}</span>
+            </section>
+            <footer class="footer">
+                <span>Current bounty is worth ${{strawhat.bounty | number}}</span>
+            </footer>
+            
+        </div>        
+    </li>
+</ul>
