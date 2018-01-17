@@ -1,1 +1,63 @@
+
 <h1>Add new member</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">        
+            <form class="form-horizontal" #addStrawHatForm="ngForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" required [ngModel]="strawhat.name" #name="ngModel">
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                        <div *ngIf="name.errors?.required">
+                            Name is required
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nickName">Nick Name</label>
+                    <input type="text" class="form-control" name="nickName" id="nickName" placeholder="Nick Name" required [ngModel]="strawhat.nickName" #nickName="ngModel">
+                    <div *ngIf="nickName.invalid && (nickName.dirty || nickName.touched)" class="alert alert-danger">
+                        <div *ngIf="nickName.errors?.required">
+                            Nick Name is required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="position">Position</label>
+                    <input type="text" class="form-control" name="position" id="position" placeholder="Position" required [ngModel]="strawhat.position" #position="ngModel">
+                    <div *ngIf="position.invalid && (position.dirty || position.touched)" class="alert alert-danger">
+                        <div *ngIf="position.errors?.required">
+                            Position is required
+                        </div>
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label for="bounty">Bounty</label>
+                    <input type="number" class="form-control" name="bounty" id="bounty" placeholder="Bounty" required [ngModel]="strawhat.bounty" #bounty="ngModel">
+                    <div *ngIf="bounty.invalid && (bounty.dirty || bounty.touched)" class="alert alert-danger">
+                        <div *ngIf="bounty.errors?.required">
+                            Bounty is required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="reset" class="btn btn-default">
+                        <i class="glyphicon glyphicon-repeat"></i>   
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-success" [disabled]="!addStrawHatForm.form.valid">
+                        <i class="glyphicon glyphicon-floppy-disk"></i>
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+    
+
+
