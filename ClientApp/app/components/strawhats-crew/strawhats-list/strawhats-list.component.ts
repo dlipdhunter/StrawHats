@@ -1,6 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { StrawHatsService } from "../services/strawhats.service";
 import { Pirate } from "../models/pirate";
+import { Observable } from "rxjs/Observable";
+import { of } from "rxjs/Observable/of";
 
 @Component({
     selector: 'strawhats-list',
@@ -8,9 +10,26 @@ import { Pirate } from "../models/pirate";
     styleUrls: ["./strawhats-list.component.css"],
     providers: [ StrawHatsService ]
 })
-export class StrawHatsListComponent {    
+export class StrawHatsListComponent implements OnInit {    
+    
+    strawHats : Pirate[];
+
+    strawHatsOb: Pirate[];
 
     constructor(private strawhatsService: StrawHatsService){
-        strawhatsService.getStrawHatCrewMembers();
+    }
+
+    ngOnInit(): void {
+        this.strawhatsService.getAll().then((crew)=> {
+            this.strawHats = crew;
+            console.log("Init data 1");
+        });
+
+        this.strawhatsService.getAllAsObservable().subscribe(result => {
+            this.strawHatsOb = result;
+            console.log("Init data 2");
+        });
+
+        console.log("Init");
     }
 }

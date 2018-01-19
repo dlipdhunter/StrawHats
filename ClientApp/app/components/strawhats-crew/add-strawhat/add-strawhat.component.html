@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">        
-            <form class="form-horizontal" #addStrawHatForm="ngForm">
+            <form class="form-horizontal" novalidate (ngSubmit)="save(addStrawHatForm)" #addStrawHatForm="ngForm">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name" required [ngModel]="strawhat.name" #name="ngModel">
