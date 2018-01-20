@@ -9,6 +9,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { StrawHatsListComponent } from "./components/strawhats-crew/strawhats-list/strawhats-list.component";
 import { AddStrawHatComponent } from "./components/strawhats-crew/add-strawhat/add-strawhat.component";
+import { EditStrawHatComponent } from "./components/strawhats-crew/edit-strawhat/edit-strawhat.component";
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { AddStrawHatComponent } from "./components/strawhats-crew/add-strawhat/a
         NavMenuComponent,
         HomeComponent,
         StrawHatsListComponent,
-        AddStrawHatComponent
+        AddStrawHatComponent,
+        EditStrawHatComponent
     ],
     imports: [
         CommonModule,
@@ -26,6 +28,7 @@ import { AddStrawHatComponent } from "./components/strawhats-crew/add-strawhat/a
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'add-strawhat', component: AddStrawHatComponent },
+            { path: 'edit-strawhat/:id', component: EditStrawHatComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

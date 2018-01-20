@@ -1,43 +1,66 @@
 import { Http, Response, Headers, RequestMethod, RequestOptions } from "@angular/http";
-
 import { Injectable, Inject } from "@angular/core";
 
 import { Pirate } from "../models/pirate";
 import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/toPromise';
 import "rxjs/add/operator/map";
-import { of } from "rxjs/observable/of";
 
 @Injectable()
 export class StrawHatsService {
     
     private api_url: string = 'api/strawhats';    
 
-    constructor(
-        private http: Http, 
-        @Inject('BASE_URL') base_url: string
-    ) { 
+    constructor(private http: Http, @Inject('BASE_URL') base_url: string) 
+    { 
         this.api_url = base_url + this.api_url;
-    }   
-    
-    getAll(){        
-        return this.http.get(this.api_url)
-        .map((data: Response) => {
-            return data.json() as Pirate[];
-        })
-        .toPromise();
     }
 
-    getAllAsObservable() : Observable<Pirate[]>
+    /*
+    * Returns a observable of pirate[]
+    */
+    getAll() : Observable<Pirate[]>
     {        
-        return this.http.get(this.api_url).map((data: Response) => {
+        return this.http.get(this.api_url)
+        .map((data : Response) => {
             return data.json() as Pirate[];
         });
     }
 
-    add(pirate: Pirate){
-       return this.http.post(this.api_url, pirate).map((data:Response) => {
+    /*
+    * Returns a pirate by id
+    */
+    get(id : number) : Observable<Pirate>
+    {
+        return this.http.get(this.api_url + '/' + id)
+        .map((data : Response) => {
             return data.json() as Pirate;
-        }).toPromise();
+        });
+    }
+
+    /*
+    * Posts the pirate data to api and returns a observable of pirate
+    */
+    add(pirate : Pirate) : Observable<Pirate>
+    {
+       return this.http.post(this.api_url, pirate)
+       .map((data : Response) => {
+            return data.json() as Pirate;
+        });
+    }
+
+    /*
+    * Update the pirate
+    */
+    update(pirate : Pirate) : Observable<Response>
+    {        
+        return this.http.put(this.api_url + '/' + pirate.id, pirate);
+    }
+
+    /*
+    * Delete the pirate by id
+    */
+    delete(id : number) : Observable<Response>
+    {
+        return this.http.delete(this.api_url + '/' + id);
     }
 }

@@ -1,9 +1,10 @@
 
-<h1>Add new member</h1>
+<h1>Edit</h1>
 <div class="container">
     <div class="row">
         <div class="col-md-12">        
-            <form class="form-horizontal" novalidate (ngSubmit)="save(addStrawHatForm)" #addStrawHatForm="ngForm">
+            <form class="form-horizontal" novalidate (ngSubmit)="save(editStrawHatForm)" #editStrawHatForm="ngForm">
+                <input type="hidden" name="id" id="id" [ngModel]="strawhat.id">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name" required [ngModel]="strawhat.name" #name="ngModel">
@@ -41,14 +42,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <button type="reset" class="btn btn-default">
-                        <i class="glyphicon glyphicon-repeat"></i>   
-                        Cancel
-                    </button>
-                    <button type="submit" class="btn btn-success" [disabled]="!addStrawHatForm.form.valid">
+                <div class="form-group">                    
+                    <button type="submit" class="btn btn-success" [disabled]="!editStrawHatForm.form.valid">
                         <i class="glyphicon glyphicon-floppy-disk"></i>
-                        Submit
+                        Update
                     </button>
                 </div>
             </form>

@@ -2,7 +2,7 @@ using System;
 
 namespace StrawHats.Models {
 
-    public class PirateModel {
+    public class Pirate {
         public int Id { get; set; }
         public string Name { get; set; }
         public string NickName { get; set; }
