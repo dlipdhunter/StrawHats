@@ -26,6 +26,7 @@ namespace StrawHats
         {
             services.AddDbContext<PirateDbContext>(opt => opt.UseInMemoryDatabase("Pirates"));
             services.AddMvc();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +46,10 @@ namespace StrawHats
             }
 
             app.UseStaticFiles();
+
+            app.UseCors(option => 
+                option.WithOrigins("http://localhost:5050").AllowAnyMethod().AllowAnyHeader()
+            );
 
             app.UseMvc(routes =>
             {
