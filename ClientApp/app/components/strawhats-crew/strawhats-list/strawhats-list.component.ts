@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { StrawHatsService } from "../services/strawhats.service";
 import { Pirate } from "../models/pirate";
-import { Observable } from "rxjs/Observable";
-import { interval } from "rxjs/observable/interval";
 
 @Component({
     selector: 'strawhats-list',
@@ -16,12 +14,12 @@ export class StrawHatsListComponent implements OnInit
     strawHats : Pirate[];
 
     constructor(private strawhatsService: StrawHatsService)
-    {
+    {        
     }
 
     ngOnInit() : void 
     {              
-        this.fetch();        
+        this.fetch();
     }
 
     fetch() : void
@@ -34,7 +32,10 @@ export class StrawHatsListComponent implements OnInit
                 },
                 error: (err : any) => {
                     console.error(err);
-                }
+                },
+                complete: () => {
+                    console.log("Fetch complete.");
+                }                
             }
         );
     }
